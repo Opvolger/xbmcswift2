@@ -314,7 +314,7 @@ class XBMCMixin(object):
             item = xbmcswift2.ListItem.from_dict(**item)
         return item
 
-    def _add_subtitles(self, subtitles):
+    def _add_subtitles(self, subtitles, subtitlestream):
         '''Adds subtitles to playing video.
 
         :param subtitles: A URL to a remote subtitles file or a local filename
@@ -336,8 +336,9 @@ class XBMCMixin(object):
             raise Exception('No video playing. Aborted after 30 seconds.')
 
         player.setSubtitles(subtitles)
+		player.setSubtitleStream(subtitlestream)
 
-    def set_resolved_url(self, item=None, subtitles=None):
+    def set_resolved_url(self, item=None, subtitles=None, subtitlestream=0):
         '''Takes a url or a listitem to be played. Used in conjunction with a
         playable list item with a path that calls back into your addon.
 
@@ -376,7 +377,7 @@ class XBMCMixin(object):
 
         # call to _add_subtitles must be after setResolvedUrl
         if subtitles:
-            self._add_subtitles(subtitles)
+            self._add_subtitles(subtitles, subtitlestream)
         return [item]
 
     def play_video(self, item, player=None):
