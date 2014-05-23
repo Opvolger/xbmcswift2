@@ -336,7 +336,7 @@ class XBMCMixin(object):
             raise Exception('No video playing. Aborted after 30 seconds.')
 
         player.setSubtitles(subtitles)
-		player.setSubtitleStream(subtitlestream)
+        player.setSubtitleStream(subtitlestream)
 
     def set_resolved_url(self, item=None, subtitles=None, subtitlestream=0):
         '''Takes a url or a listitem to be played. Used in conjunction with a
